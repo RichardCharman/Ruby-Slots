@@ -16,6 +16,17 @@
   <div>Reel 1: <%= session[:reel1] %></div>
   <div>Reel 2: <%= session[:reel2] %></div>
   <div>Reel 3: <%= session[:reel3] %></div>
+  <% if @play == 1 %>
+    <% if (session[:reel1] == session[:reel2]) && (session[:reel1] == session[:reel3]) %>
+      <div>You have won 20 coins!</div>
+      <% session[:coins]=session[:coins]+20 %>
+    <% elsif (session[:reel1] == session[:reel2]) %>
+      <div>You have won 10 coins!</div>
+      <% session[:coins]=session[:coins]+10 %>
+    <% else %>
+      <div>Not this time. Spin again.</div>
+    <% end %>
+  <% end %>
   <div>Coins: <%= session[:coins] %></div>
   <% if session[:coins] > 0 %>
     <form action="/" method="post">
