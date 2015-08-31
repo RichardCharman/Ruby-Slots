@@ -1,11 +1,10 @@
-<div>
+<div style='width: 368px; height: 465px; background-image: url(/images/machine.jpg); text-align:center; margin:0 auto; '>
+  <div style='padding-top:80px;'>
   <% if @play == 1 %>
-  <% if session[:hold1] == 0 %>
     <% session[:reel1]=session[:reel1]+@reel1 %>
     <% if session[:reel1] > 9 %>
       <% session[:reel1]=session[:reel1]-9 %>
     <% end %>
-  <% end %>
     <% session[:reel2]=session[:reel2]+@reel2 %>
     <% if session[:reel2] > 9 %>
       <% session[:reel2]=session[:reel2]-9 %>
@@ -15,37 +14,34 @@
       <% session[:reel3]=session[:reel3]-9 %>
     <% end %>
   <% end %>
-  <% session[:hold1] = 0 %>
-  <div>Reel 1: <%= session[:reel1] %></div>
-  <div>Reel 2: <%= session[:reel2] %></div>
-  <div>Reel 3: <%= session[:reel3] %></div>
+  </div>
   <div>
-    <img src="/images/<%= session[:reel1] %>.jpg" width="100" height="100">
-    <img src="/images/<%= session[:reel2] %>.jpg" width="100" height="100">
-    <img src="/images/<%= session[:reel3] %>.jpg" width="100" height="100">
+    <img src="/images/<%= session[:reel1] %>.jpg" width="80" height="80">
+    <img src="/images/<%= session[:reel2] %>.jpg" width="80" height="80">
+    <img src="/images/<%= session[:reel3] %>.jpg" width="80" height="80">
   </div>
   <% if @play == 1 %>
     <% if (session[:reel1] == session[:reel2]) && (session[:reel1] == session[:reel3]) %>
-      <div>You have won 20 coins!</div>
+      <div style="font-size:20px">You have won 20 coins!</div>
       <% session[:coins]=session[:coins]+20 %>
     <% elsif (session[:reel1] == session[:reel2]) %>
-      <div>You have won 10 coins!</div>
+      <div style="font-size:20px">You have won 10 coins!</div>
       <% session[:coins]=session[:coins]+10 %>
     <% else %>
       <% if session[:coins] == 0 %>
-        <div>No coins left. Sorry!</div>
+        <div style="font-size:20px">No coins left. Sorry!</div>
       <% else %>
-        <div>Not this time. Spin again.</div>
+        <div style="font-size:20px">Not this time. Spin again.</div>
       <% end %>
     <% end %>
   <% end %>
-  <div>Coins: <%= session[:coins] %></div>
+  <div style="font-size:30px">Coins: <%= session[:coins] %></div>
+  <input type="button" style="height:80px;width:80px" value="HOLD 1">
+  <input type="button" style="height:80px;width:80px" value="HOLD 2">
+  <input type="button" style="height:80px;width:80px" value="HOLD 3">
   <% if session[:coins] > 0 %>
     <form action="/" method="post">
-      <input type="button" style="height:100px;width:100px" value="HOLD 1">
-      <input type="button" style="height:100px;width:100px" value="HOLD 2">
-      <input type="button" style="height:100px;width:100px" value="HOLD 3">
-      <input type="submit" style="height:100px;width:100px" value="SPIN">
+      <input type="submit" style="height:100px;width:248px" value="SPIN">
     </form>
   <% end %>
 </div>
