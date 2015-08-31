@@ -24,19 +24,17 @@
       <div>You have won 10 coins!</div>
       <% session[:coins]=session[:coins]+10 %>
     <% else %>
-      <div>Not this time. Spin again.</div>
+      <% if session[:coins] == 0 %>
+        <div>No coins left. Sorry!</div>
+      <% else %>
+        <div>Not this time. Spin again.</div>
+      <% end %>
     <% end %>
   <% end %>
   <div>Coins: <%= session[:coins] %></div>
   <% if session[:coins] > 0 %>
     <form action="/" method="post">
-      <input type="submit" value="SPIN">
+      <input type="submit" style="height:100px;width:100px" value="SPIN">
     </form>
-  <% end %>
-  <% if @play == 1 && session[:coins] > 0 %>
-    <div>playing the game</div>
-  <% end %>
-  <% if session[:coins] == 0 %>
-    <div>No coins left. Sorry!</div>
   <% end %>
 </div>
