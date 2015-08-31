@@ -12,20 +12,22 @@ class Slot < Sinatra::Base
 
   enable :sessions
   set :views, proc { File.join(root, '..', 'views') }
+  set :public, proc { File.join(root, '..', 'public') }
 
   get '/' do
     session[:coins] = 10
-    session[:reel1] = 0
-    session[:reel2] = 0
-    session[:reel3] = 0
+    session[:reel1] = 1
+    session[:reel2] = 1
+    session[:reel3] = 1
+    session[:hold1] = 0
     erb :index
   end
 
   post '/' do
     @play = 1
-    @reel1 = rand(4..10)
-    @reel2 = rand(6..10)
-    @reel3 = rand(8..10)
+    @reel1 = rand(3..9)
+    @reel2 = rand(5..9)
+    @reel3 = rand(7..9)
     session[:coins]=session[:coins]-1
     erb :index
   end
