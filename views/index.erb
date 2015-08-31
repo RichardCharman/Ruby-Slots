@@ -1,9 +1,14 @@
 <div>
-  <% if @play == 1 %>
-  <div>playing the game</div>
+  <div>Coins: <%= session[:coins] %></div>
+  <% if session[:coins] > 0 %>
+    <form action="/" method="post">
+      <input type="submit" value="SPIN">
+    </form>
   <% end %>
-  <div><%= session[:coins] %></div>
-  <form action="/" method="post">
-    <input type="submit" value="SPIN">
-  </form>
+  <% if @play == 1 && session[:coins] > 0 %>
+    <div>playing the game</div>
+  <% end %>
+  <% if session[:coins] == 0 %>
+    <div>No coins left. Sorry!</div>
+  <% end %>
 </div>
