@@ -2,6 +2,7 @@
   <% if @play == 1 %>
   <div>playing the game</div>
   <% end %>
+  <div><%= session[:coins] %></div>
   <form action="/" method="post">
     <input type="submit" value="SPIN">
   </form>
