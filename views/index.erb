@@ -1,5 +1,5 @@
 <div style='width: 368px; height: 465px; background-image: url(/images/machine.jpg); text-align:center; margin:0 auto; '>
-  <div style='padding-top:80px;'>
+  <div style='padding-top:80px; '>
   <% if @play == 1 %>
     <% session[:reel1]=session[:reel1]+@reel1 %>
     <% if session[:reel1] > 9 %>
@@ -23,9 +23,9 @@
   <% if @play == 1 %>
     <% if (session[:reel1] == session[:reel2]) && (session[:reel1] == session[:reel3]) %>
       <% @winnings=(session[:reel1]*3) %>
-      <% if @winnings < 13 %>
+      <% if @winnings < 11 %>
         <% @winnings=5 %>
-      <% elsif @winnings > 12 && @winnings < 20 %>
+      <% elsif @winnings > 11 && @winnings < 20 %>
         <% @winnings=10 %>
       <% elsif @winnings > 20 && @winnings < 25 %>
         <% @winnings=20 %>
@@ -61,7 +61,12 @@
   <input type="button" style="height:80px;width:80px" value="HOLD 3">
   <% if session[:coins] > 0 %>
     <form action="/" method="post">
-      <input type="submit" style="height:100px;width:80px" value="SPIN">
+      <input type="submit" style="height:40px;width:248px" value="SPIN">
+    </form>
+  <% else %>
+    <form>
+      <input type="button" style="height:40px;width:248px" value="SPIN">
     </form>
   <% end %>
+  <div><img src="/images/scoring.jpg" width="248" height="58"></div>
 </div>
