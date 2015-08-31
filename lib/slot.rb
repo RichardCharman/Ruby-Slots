@@ -16,9 +16,9 @@ class Slot < Sinatra::Base
 
   get '/' do
     session[:coins] = 10
-    session[:reel1] = 1
-    session[:reel2] = 1
-    session[:reel3] = 1
+    session[:reel1] = 9
+    session[:reel2] = 9
+    session[:reel3] = 9
     session[:hold1] = 0
     erb :index
   end
