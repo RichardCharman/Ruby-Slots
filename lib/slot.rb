@@ -8,10 +8,16 @@ class Slot < Sinatra::Base
     set :port, 3000
   end
 
+  set :views, proc { File.join(root, '..', 'views') }
+
   get '/' do
-    'Hello Slot!'
+    erb :index
   end
 
+  post '/' do
+    @play = 1
+    erb :index
+  end
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
