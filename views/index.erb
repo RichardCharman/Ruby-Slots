@@ -1,4 +1,21 @@
 <div>
+  <% if @play == 1 %>
+    <% session[:reel1]=session[:reel1]+@reel1 %>
+    <% if session[:reel1] > 10 %>
+      <% session[:reel1]=session[:reel1]-10 %>
+    <% end %>
+    <% session[:reel2]=session[:reel2]+@reel2 %>
+    <% if session[:reel2] > 10 %>
+      <% session[:reel2]=session[:reel2]-10 %>
+    <% end %>
+    <% session[:reel3]=session[:reel3]+@reel3 %>
+    <% if session[:reel3] > 10 %>
+      <% session[:reel3]=session[:reel3]-10 %>
+    <% end %>
+  <% end %>
+  <div>Reel 1: <%= session[:reel1] %></div>
+  <div>Reel 2: <%= session[:reel2] %></div>
+  <div>Reel 3: <%= session[:reel3] %></div>
   <div>Coins: <%= session[:coins] %></div>
   <% if session[:coins] > 0 %>
     <form action="/" method="post">

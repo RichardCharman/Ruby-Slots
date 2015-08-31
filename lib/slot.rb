@@ -15,11 +15,17 @@ class Slot < Sinatra::Base
 
   get '/' do
     session[:coins] = 10
+    session[:reel1] = 0
+    session[:reel2] = 0
+    session[:reel3] = 0
     erb :index
   end
 
   post '/' do
     @play = 1
+    @reel1 = rand(4..10)
+    @reel2 = rand(6..10)
+    @reel3 = rand(8..10)
     session[:coins]=session[:coins]-1
     erb :index
   end
