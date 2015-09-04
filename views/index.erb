@@ -1,17 +1,29 @@
 <div style='width: 368px; height: 465px; background-image: url(/images/machine.jpg); text-align:center; margin:0 auto; '>
   <div style='padding-top:80px; '>
   <% if @play == 1 %>
-    <% session[:reel1]=session[:reel1]+@reel1 %>
-    <% if session[:reel1] > 9 %>
-      <% session[:reel1]=session[:reel1]-9 %>
+    <% if session[:hold1] == 0 %>
+      <% session[:reel1]=session[:reel1]+@reel1 %>
+        <% if session[:reel1] > 9 %>
+          <% session[:reel1]=session[:reel1]-9 %>
+        <% end %>
+    <% else %>
+      <% session[:hold1] = 0 %>
     <% end %>
-    <% session[:reel2]=session[:reel2]+@reel2 %>
-    <% if session[:reel2] > 9 %>
-      <% session[:reel2]=session[:reel2]-9 %>
+    <% if session[:hold2] == 0 %>
+      <% session[:reel2]=session[:reel2]+@reel2 %>
+        <% if session[:reel2] > 9 %>
+          <% session[:reel2]=session[:reel2]-9 %>
+        <% end %>
+    <% else %>
+      <% session[:hold2] = 0 %>
     <% end %>
-    <% session[:reel3]=session[:reel3]+@reel3 %>
-    <% if session[:reel3] > 9 %>
-      <% session[:reel3]=session[:reel3]-9 %>
+    <% if session[:hold3] == 0 %>
+      <% session[:reel3]=session[:reel3]+@reel3 %>
+        <% if session[:reel3] > 9 %>
+        <% session[:reel3]=session[:reel3]-9 %>
+      <% end %>
+    <% else %>
+      <% session[:hold3] = 0 %>
     <% end %>
   <% end %>
   </div>
@@ -19,6 +31,15 @@
     <img src="/images/<%= session[:reel1] %>.jpg" width="80" height="80">
     <img src="/images/<%= session[:reel2] %>.jpg" width="80" height="80">
     <img src="/images/<%= session[:reel3] %>.jpg" width="80" height="80">
+  </div>
+  <div>
+    <% if session[:buttons] == 1 %>
+      <a href="/hold1"><% if session[:hold1] == 0 %><img src="/images/buttond.jpg" width="80" height="40"><% else %><img src="/images/buttonb.jpg" width="80" height="40"><% end %></a>
+      <a href="/hold2"><% if session[:hold2] == 0 %><img src="/images/buttond.jpg" width="80" height="40"><% else %><img src="/images/buttonb.jpg" width="80" height="40"><% end %></a>
+      <a href="/hold3"><% if session[:hold3] == 0 %><img src="/images/buttond.jpg" width="80" height="40"><% else %><img src="/images/buttonb.jpg" width="80" height="40"><% end %></a>
+    <% else %>
+    <img src="/images/buttona.jpg" width="80" height="40"> <img src="/images/buttona.jpg" width="80" height="40"> <img src="/images/buttona.jpg" width="80" height="40">
+    <% end %>
   </div>
   <% if @play == 1 %>
     <% if (session[:reel1] == session[:reel2]) && (session[:reel1] == session[:reel3]) %>
@@ -45,7 +66,7 @@
       <% if session[:coins] == 0 %>
         <div style="font-size:20px">No coins left. Sorry!</div>
       <% else %>
-        <div style="font-size:20px">Not this time. Spin again.</div>
+          <div style="font-size:20px">Not this time. Spin again.</div>
       <% end %>
     <% end %>
     <% if @winnings %>
@@ -56,9 +77,7 @@
     <div style="font-size:20px">Spin those reels!</div>
   <% end %>
   <div style="font-size:30px">Coins: <%= session[:coins] %></div>
-  <input type="button" style="height:80px;width:80px" value="HOLD 1">
-  <input type="button" style="height:80px;width:80px" value="HOLD 2">
-  <input type="button" style="height:80px;width:80px" value="HOLD 3">
+  <div>
   <% if session[:coins] > 0 %>
     <form action="/" method="post">
       <input type="submit" style="height:40px;width:248px" value="SPIN">

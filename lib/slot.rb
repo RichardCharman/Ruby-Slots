@@ -19,7 +19,10 @@ class Slot < Sinatra::Base
     session[:reel1] = 9
     session[:reel2] = 9
     session[:reel3] = 9
+    session[:buttons] = 0
     session[:hold1] = 0
+    session[:hold2] = 0
+    session[:hold3] = 0
     erb :index
   end
 
@@ -29,6 +32,22 @@ class Slot < Sinatra::Base
     @reel2 = rand(5..9)
     @reel3 = rand(7..9)
     session[:coins]=session[:coins]-1
+    session[:buttons]=rand(9)
+    erb :index
+  end
+
+  get '/hold1' do
+    session[:hold1]=1
+    erb :index
+  end
+
+  get '/hold2' do
+    session[:hold2]=1
+    erb :index
+  end
+
+  get '/hold3' do
+    session[:hold3]=1
     erb :index
   end
   # start the server if ruby file executed directly
