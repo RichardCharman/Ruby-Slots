@@ -1,5 +1,29 @@
 <div style='width: 368px; height: 465px; background-image: url(/images/machine.jpg); text-align:center; margin:0 auto; '>
   <div style='padding-top:80px; '>
+    <% if session[:nudges] == 2 %>
+      <% if session[:nudge1] == 1 %>
+        <% session[:reel1]=session[:reel1]+1 %>
+          <% if session[:reel1] > 9 %>
+            <% session[:reel1]=session[:reel1]-9 %>
+          <% end %>
+        <% session[:nudge1]=0 %>
+      <% end %>
+      <% if session[:nudge2] == 1 %>
+        <% session[:reel2]=session[:reel2]+1 %>
+          <% if session[:reel2] > 9 %>
+            <% session[:reel2]=session[:reel2]-9 %>
+          <% end %>
+        <% session[:nudge2]=0 %>
+      <% end %>
+      <% if session[:nudge3] == 1 %>
+        <% session[:reel3]=session[:reel3]+1 %>
+          <% if session[:reel3] > 9 %>
+            <% session[:reel3]=session[:reel3]-9 %>
+          <% end %>
+        <% session[:nudge3]=0 %>
+      <% end %>
+      <% session[:nudges]=0 %>
+    <% end %>
   <% if @play == 1 %>
     <% if session[:hold1] == 0 %>
       <% session[:reel1]=session[:reel1]+@reel1 %>
@@ -37,6 +61,10 @@
       <a href="/hold1"><% if session[:hold1] == 0 %><img src="/images/buttond.jpg" width="80" height="40"><% else %><img src="/images/buttonb.jpg" width="80" height="40"><% end %></a>
       <a href="/hold2"><% if session[:hold2] == 0 %><img src="/images/buttond.jpg" width="80" height="40"><% else %><img src="/images/buttonb.jpg" width="80" height="40"><% end %></a>
       <a href="/hold3"><% if session[:hold3] == 0 %><img src="/images/buttond.jpg" width="80" height="40"><% else %><img src="/images/buttonb.jpg" width="80" height="40"><% end %></a>
+    <% elsif session[:buttons] == 2 %>
+    <a href="/nudge1"><% if session[:nudge1] == 0 %><img src="/images/buttonc.jpg" width="80" height="40"><% else %><img src="/images/buttone.jpg" width="80" height="40"><% end %></a>
+    <a href="/nudge2"><% if session[:nudge2] == 0 %><img src="/images/buttonc.jpg" width="80" height="40"><% else %><img src="/images/buttone.jpg" width="80" height="40"><% end %></a>
+    <a href="/nudge3"><% if session[:nudge3] == 0 %><img src="/images/buttonc.jpg" width="80" height="40"><% else %><img src="/images/buttone.jpg" width="80" height="40"><% end %></a>
     <% else %>
     <img src="/images/buttona.jpg" width="80" height="40"> <img src="/images/buttona.jpg" width="80" height="40"> <img src="/images/buttona.jpg" width="80" height="40">
     <% end %>
